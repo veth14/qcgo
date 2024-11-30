@@ -1,3 +1,9 @@
+# FOR DEVELOPERS
+Do commit changes directly to the master branch
+
+Create a branch and merge it with the master branch
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
