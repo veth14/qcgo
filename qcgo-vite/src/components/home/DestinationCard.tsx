@@ -15,7 +15,7 @@ const DestinationCard = ({ image, title, location, to }: DestinationCardProps) =
   return (
     <Link
       to={to}
-      className="group relative overflow-hidden rounded-lg transition-all duration-500"
+      className="relative overflow-hidden transition-all duration-500 rounded-lg group"
       style={{
         height: '350px',
         boxShadow: isHovered
@@ -41,12 +41,12 @@ const DestinationCard = ({ image, title, location, to }: DestinationCardProps) =
       </div>
 
       {/* Content - Positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-        <h3 className="text-2xl font-bold text-white mb-2">
+      <div className="absolute bottom-0 left-0 right-0 z-10 p-5">
+        <h3 className="mb-2 text-2xl font-bold text-white">
           {title}
         </h3>
 
-        <div className="flex items-center text-white/90 text-sm">
+        <div className="flex items-center text-sm text-white/90">
           <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
