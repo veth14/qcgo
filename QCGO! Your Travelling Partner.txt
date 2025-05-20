@@ -1,0 +1,9 @@
+QCGO! Your Travelling Partner
+
+Project Started | May 20, 2025
+Projected Completion | July 31, 2025
+
+Day 1 | 
+A.) Created a landing page
+B.) GitHub Repository 
+C.) Netlify 
