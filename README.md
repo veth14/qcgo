@@ -8,7 +8,6 @@ QCGO is a modern travel website designed to help users discover, plan, and book 
 ### For Travelers
 - **Destination Discovery**: Explore popular and off-the-beaten-path destinations with rich descriptions and stunning imagery
 - **Trip Planning**: Create and customize itineraries based on interests, budget, and time constraints
-- **Booking System**: Seamlessly book flights, accommodations, and activities through our integrated platform
 - **User Reviews**: Access authentic reviews and ratings from fellow travelers
 - **Travel Guides**: Comprehensive guides with local insights, tips, and recommendations
 - **Interactive Maps**: Visualize destinations and points of interest with interactive mapping
@@ -28,7 +27,7 @@ QCGO is a modern travel website designed to help users discover, plan, and book 
 - **Authentication**: JWT-based authentication system
 - **Maps Integration**: Google Maps API for location services
 - **Payment Processing**: Stripe for secure payment handling
-- **Cloud Storage**: AWS S3 for media storage
+- **Cloud Storage**: Firebase for media storage
 - **Deployment**: Docker and Kubernetes for containerization and orchestration
 
 ## Getting Started
@@ -67,7 +66,7 @@ QCGO is a modern travel website designed to help users discover, plan, and book 
    yarn dev
    ```
 
-5. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## Project Structure
 
