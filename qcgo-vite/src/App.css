@@ -1,0 +1,15 @@
+/* Custom styles beyond Tailwind */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Add any additional custom styles here */
