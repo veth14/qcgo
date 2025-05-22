@@ -3,7 +3,7 @@ import AboutQC from './AboutQC';
 import AdventureCarousel from './AdventureCarousel';
 import Features from './Features';
 import Destinations from './Destinations';
-import Newsletter from './Newsletter';
+import CommunityConnect from './Newsletter';
 
 const HomePage = () => {
   return (
@@ -13,7 +13,7 @@ const HomePage = () => {
       <AdventureCarousel />
       <Features />
       <Destinations />
-      <Newsletter />
+      <CommunityConnect />
     </div>
   );
 };

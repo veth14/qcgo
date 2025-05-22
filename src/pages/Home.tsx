@@ -3,7 +3,7 @@ import AboutQC from '../components/home/AboutQC';
 import AdventureCarousel from '../components/home/AdventureCarousel';
 import Features from '../components/home/Features';
 import Destinations from '../components/home/Destinations';
-import Newsletter from '../components/home/Newsletter';
+import CommunityConnect from '../components/home/Newsletter';
 import SocialMedia from '../components/home/SocialMedia';
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
       <AdventureCarousel />
       <Features />
       <Destinations />
-      <Newsletter />
+      <CommunityConnect />
       <SocialMedia />
     </div>
   );
