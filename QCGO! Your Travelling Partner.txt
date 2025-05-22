@@ -14,3 +14,10 @@ Day 2 | May 21, 2025
 Day 3 | May 22, 2025
 Ian - A.) Fix Carousel
 Ian - B.) Get To Know
+Ian - C.) Adventure Carousel 
+Ian - D.) Features
+Ian - E.) Visit Now | Destination
+Ian - F.) Newsletter 
+
+
+npm install react-icons
