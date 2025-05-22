@@ -146,13 +146,17 @@ const AdventureCarousel = () => {
         <motion.div 
           className="mb-14 text-center"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <motion.div 
             className="relative inline-block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
           >
             <span className="inline-block px-4 py-1 mb-3 text-sm font-semibold tracking-wider text-black uppercase rounded-full bg-gradient-to-r from-yellow-300 to-yellow-400 shadow-glow">
               Discover Quezon City
@@ -162,7 +166,8 @@ const AdventureCarousel = () => {
           <motion.h2 
             className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             EXPLORE THE DISTRICTS
@@ -171,7 +176,8 @@ const AdventureCarousel = () => {
           <motion.div 
             className="max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <p className="text-lg text-gray-300">Immerse yourself in the diverse experiences Quezon City has to offer</p>
@@ -184,7 +190,13 @@ const AdventureCarousel = () => {
         </motion.div>
         
         {/* District Selection Navigation - Horizontal Strip Design */}
-        <div className="mb-6">
+        <motion.div 
+          className="mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <h3 className="text-center text-white text-lg font-medium mb-4">Select a District</h3>
           <div className="grid grid-cols-6 gap-2">
             {slides.map((slide, index) => (
@@ -196,6 +208,10 @@ const AdventureCarousel = () => {
                     ? 'bg-blue-500 text-white'
                     : 'bg-gray-800 text-white hover:bg-gray-700'
                 }`}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.1 * index + 0.5 }}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -206,12 +222,16 @@ const AdventureCarousel = () => {
               </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
         
         {/* Immersive carousel container */}
-        <div 
+        <motion.div 
           ref={carouselRef}
           className="relative perspective-1000"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onMouseDown={handleDragStart}
@@ -412,7 +432,7 @@ const AdventureCarousel = () => {
             className="absolute right-0 top-1/4 h-1/2 p-0 w-20 opacity-0"
             aria-label="Next slide"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
