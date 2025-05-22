@@ -38,7 +38,7 @@ const AdventureCarousel = () => {
   const slides = [
     {
       id: 1,
-      image: '/Landing Page Pics/eastwood.png',
+      image: './Landing Page Pics/eastwood.png',
       district: 'District 1',
       title: 'Eastwood City',
       description: 'Home to modern lifestyle hubs, shopping centers, and business districts.',
@@ -46,7 +46,7 @@ const AdventureCarousel = () => {
     },
     {
       id: 2,
-      image: '/Landing Page Pics/gateway.jpg',
+      image: './Landing Page Pics/gateway.jpg',
       district: 'District 2',
       title: 'Cubao Area',
       description: 'The commercial and entertainment center featuring Gateway Mall and Araneta City.',
@@ -54,7 +54,7 @@ const AdventureCarousel = () => {
     },
     {
       id: 3,
-      image: '/Landing Page Pics/quezon_city_memorial_circle.jpg',
+      image: './Landing Page Pics/quezon_city_memorial_circle.jpg',
       district: 'District 3',
       title: 'Quezon Memorial Circle',
       description: 'Historical landmark and urban park honoring President Manuel L. Quezon.',
@@ -62,7 +62,7 @@ const AdventureCarousel = () => {
     },
     {
       id: 4,
-      image: '/Landing Page Pics/up_diliman.jpg',
+      image: './Landing Page Pics/UPD.png',
       district: 'District 4',
       title: 'UP Diliman & Maginhawa',
       description: 'Home to the University of the Philippines and the famous food street Maginhawa.',
@@ -70,7 +70,7 @@ const AdventureCarousel = () => {
     },
     {
       id: 5,
-      image: '/Landing Page Pics/fairview.jpg',
+      image: './Landing Page Pics/Wildlife.png',
       district: 'District 5',
       title: 'Fairview & Lagro',
       description: 'Residential areas with shopping centers and parks in the northern part of the city.',
@@ -78,7 +78,7 @@ const AdventureCarousel = () => {
     },
     {
       id: 6,
-      image: '/Landing Page Pics/batasan.jpg',
+      image: './Landing Page Pics/circle.png',
       district: 'District 6',
       title: 'Batasan Hills',
       description: 'Location of the Batasang Pambansa Complex, the seat of the House of Representatives.',
