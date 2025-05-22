@@ -1,10 +1,53 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 const Features = () => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const sectionRef = useRef(null);
+  const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Enhanced parallax values
+  const patternY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const patternOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+  const patternScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.05, 0.95]);
   
-  // Premium quality icons with consistent styling
+  // Keyboard navigation
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (focusedIndex === null) return;
+
+    switch (e.key) {
+      case 'ArrowRight':
+        setFocusedIndex((prev) => (prev === null || prev === features.length - 1) ? 0 : prev + 1);
+        break;
+      case 'ArrowLeft':
+        setFocusedIndex((prev) => (prev === null || prev === 0) ? features.length - 1 : prev - 1);
+        break;
+      case 'Enter':
+      case ' ':
+        setHovered(focusedIndex);
+        break;
+      default:
+        break;
+    }
+  }, [focusedIndex]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  useEffect(() => {
+    if (focusedIndex !== null && featureRefs.current[focusedIndex]) {
+      featureRefs.current[focusedIndex]?.focus();
+    }
+  }, [focusedIndex]);
+
   const features = [
     {
       id: 1,
@@ -16,7 +59,10 @@ const Features = () => {
         </svg>
       ),
       title: 'We help you save time',
-      description: 'Lorem Ipsum is simply dummy text'
+      description: 'Plan your Quezon City adventures efficiently with our curated guides and smart itinerary suggestions.',
+      bgGradient: 'from-blue-50 to-indigo-50',
+      iconBg: 'from-blue-500/20 to-indigo-500/20',
+      accentColor: 'rgb(59, 130, 246)'
     },
     {
       id: 2,
@@ -28,7 +74,9 @@ const Features = () => {
         </svg>
       ),
       title: 'Explore different places',
-      description: 'Lorem Ipsum is simply dummy text'
+      description: 'Discover hidden gems and popular spots across Quezon City\'s diverse districts and neighborhoods.',
+      bgGradient: 'from-purple-50 to-pink-50',
+      iconBg: 'from-purple-500/20 to-pink-500/20'
     },
     {
       id: 3,
@@ -40,11 +88,13 @@ const Features = () => {
         </svg>
       ),
       title: 'Accessible location',
-      description: 'Lorem Ipsum is simply dummy text'
+      description: 'Find the best routes and transportation options to reach your desired destinations in Quezon City.',
+      bgGradient: 'from-green-50 to-teal-50',
+      iconBg: 'from-green-500/20 to-teal-500/20'
     }
   ];
 
-  // Container animation with enhanced staggering
+  // Enhanced container animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,12 +106,13 @@ const Features = () => {
     }
   };
 
-  // Item animation with spring physics
+  // Enhanced item animation
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20, rotateX: -15 },
     visible: {
       opacity: 1,
       y: 0,
+      rotateX: 0,
       transition: { 
         type: "spring",
         stiffness: 100,
@@ -71,198 +122,308 @@ const Features = () => {
     }
   };
 
-  // Professional hover effect for icons
+  // Enhanced icon animation
   const iconHoverAnimation = {
     rest: { 
       scale: 1,
-      opacity: 1,
-      filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 0))",
+      rotate: 0,
+      y: 0,
       transition: {
-        duration: 0.5,
-        ease: [0.23, 1, 0.32, 1] // Cubic bezier for smooth animation
+        type: "spring",
+        stiffness: 300,
+        damping: 20
       }
     },
     hover: { 
-      scale: 1.08,
-      opacity: 1,
-      filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1))",
+      scale: 1.1,
+      rotate: 5,
+      y: -5,
       transition: {
-        duration: 0.4,
-        ease: [0.23, 1, 0.32, 1]
+        type: "spring",
+        stiffness: 300,
+        damping: 20
       }
     }
   };
 
-  // Professional heading animation with accent
-  const headingVariants = {
-    initial: { opacity: 0, y: -10 },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.33, 1, 0.68, 1]
-      }
-    }
-  };
+  // Enhanced Pattern component with 3D effect
+  const Pattern = () => (
+    <motion.div 
+      className="absolute inset-0 pointer-events-none overflow-hidden perspective-1000"
+      style={{ 
+        y: patternY, 
+        opacity: patternOpacity,
+        scale: patternScale,
+      }}
+    >
+      <div className="absolute w-full h-full transform-style-3d">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gray-100"
+            initial={{ opacity: 0, scale: 0, rotateX: -30 }}
+            animate={{ 
+              opacity: Math.random() * 0.07,
+              scale: Math.random() * 0.5 + 0.5,
+              rotateX: 0,
+              transition: { 
+                delay: i * 0.1,
+                duration: 1,
+                type: "spring",
+                stiffness: 100
+              }
+            }}
+            style={{
+              width: Math.random() * 300 + 50 + 'px',
+              height: Math.random() * 300 + 50 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              transform: 'translate(-50%, -50%)',
+              transformStyle: 'preserve-3d'
+            }}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+
+  // Mouse parallax effect
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      setMousePosition({
+        x: (clientX / innerWidth - 0.5) * 20,
+        y: (clientY / innerHeight - 0.5) * 20
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section className="py-16 md:py-28 bg-white relative overflow-hidden">
-      {/* Enhanced background elements with refined positioning */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[5%] -left-20 w-72 h-72 rounded-full bg-gradient-to-br from-blue-50 to-transparent opacity-30 blur-xl"></div>
-        <div className="absolute bottom-[10%] -right-20 w-96 h-96 rounded-full bg-gradient-to-tl from-blue-50 to-transparent opacity-30 blur-xl"></div>
-        <div className="absolute top-[40%] left-[25%] w-24 h-24 rounded-full bg-blue-50 opacity-20 blur-lg"></div>
-      </div>
+    <section 
+      ref={sectionRef} 
+      className="py-20 md:py-32 bg-white relative overflow-hidden"
+      style={{ perspective: '1000px' }}
+    >
+      <Pattern />
       
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Premium section header with accent */}
+      <motion.div 
+        className="container mx-auto px-4 relative z-10"
+        style={{ 
+          rotateX: mousePosition.y * 0.1,
+          rotateY: mousePosition.x * 0.1,
+          transformStyle: 'preserve-3d'
+        }}
+      >
+        {/* Enhanced section header */}
         <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={headingVariants}
-          className="text-center mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
         >
-          <div className="flex flex-col items-center">
-            <div className="flex items-center space-x-2 mb-3">
-              <div className="w-6 h-0.5 bg-blue-400"></div>
-              <span className="text-xs font-medium tracking-wider text-blue-500 uppercase">Features</span>
-              <div className="w-6 h-0.5 bg-blue-400"></div>
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-bold text-navy-900 relative inline-block">
-              WHY USE QCGO?
-              <motion.div 
-                className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-1 bg-blue-500"
-                initial={{ width: 0 }}
-                whileInView={{ width: '60%' }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                viewport={{ once: true }}
-              />
-            </h2>
-          </div>
+          <motion.div 
+            className="inline-flex items-center justify-center mb-6"
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
+          >
+            <motion.div 
+              className="w-12 h-[2px]"
+              style={{
+                background: `linear-gradient(to right, rgba(59, 130, 246, 0) 0%, rgb(59, 130, 246) 100%)`
+              }}
+              animate={{ scaleX: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            <span className="mx-4 text-sm font-semibold tracking-wider text-blue-600 uppercase">Features</span>
+            <motion.div 
+              className="w-12 h-[2px]"
+              style={{
+                background: `linear-gradient(to left, rgba(59, 130, 246, 0) 0%, rgb(59, 130, 246) 100%)`
+              }}
+              animate={{ scaleX: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+          
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold text-navy-900 relative inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            WHY USE QCGO?
+            <motion.div 
+              className="absolute -bottom-3 left-0 w-full h-1"
+              style={{
+                background: 'linear-gradient(to right, rgba(59, 130, 246, 0), rgb(59, 130, 246), rgba(59, 130, 246, 0))'
+              }}
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { 
+                scaleX: 1,
+                transition: {
+                  duration: 0.8,
+                  delay: 0.5
+                }
+              } : {}}
+            />
+          </motion.h2>
         </motion.div>
 
-        {/* Features Grid with enhanced layout and spacing */}
+        {/* Enhanced features grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-y-20 max-w-7xl mx-auto"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 gap-y-12 lg:gap-y-16 max-w-7xl mx-auto"
         >
-          {features.map((feature) => (
+          {features.map((feature, index) => (
             <motion.div
               key={feature.id}
+              ref={(el) => { featureRefs.current[index] = el; }}
               variants={itemVariants}
-              className="flex flex-col items-center text-center group"
-              onMouseEnter={() => setHovered(feature.id)}
+              className="relative"
+              onMouseEnter={() => {
+                setHovered(feature.id);
+                setFocusedIndex(index);
+              }}
               onMouseLeave={() => setHovered(null)}
+              onFocus={() => setFocusedIndex(index)}
+              onBlur={() => setFocusedIndex(null)}
+              tabIndex={0}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              {/* Premium circular icon container */}
-              <div className="relative mb-8">
-                {/* Background accent circle */}
-                <motion.div 
-                  className="absolute inset-0 rounded-full bg-blue-50"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                />
+              <AnimatePresence>
+                {(hovered === feature.id || focusedIndex === index) && (
+                  <motion.div
+                    className="absolute -inset-4 bg-white rounded-3xl"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 0.05, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+              </AnimatePresence>
 
-                {/* Icon container with premium hover effect */}
+              {/* Enhanced feature card */}
+              <motion.div 
+                className={`h-full p-6 sm:p-8 rounded-2xl bg-gradient-to-br ${feature.bgGradient} relative overflow-hidden group`}
+                whileHover={{ 
+                  y: -5, 
+                  scale: 1.02,
+                  rotateX: 5,
+                  rotateY: mousePosition.x * 0.05
+                }}
+                transition={{ duration: 0.3 }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Enhanced decorative elements */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-transparent" />
+                  <motion.div 
+                    className="absolute -right-16 -bottom-16 w-32 h-32 rounded-full blur-2xl transform"
+                    style={{
+                      background: `linear-gradient(to bottom right, ${feature.iconBg.split(' ')[0].replace('from-', '')} 0%, ${feature.iconBg.split(' ')[1].replace('to-', '')} 100%)`
+                    }}
+                    animate={{
+                      scale: hovered === feature.id ? [1, 1.2, 1] : 1,
+                      rotate: hovered === feature.id ? [45, 90, 45] : 45,
+                      y: mousePosition.y * 0.5
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                  />
+                </div>
+
+                {/* Enhanced icon container */}
                 <motion.div 
-                  className="relative w-40 h-40 rounded-full bg-gray-100 flex items-center justify-center z-10"
+                  className="relative mb-8 w-20 h-20"
                   initial="rest"
                   animate={hovered === feature.id ? "hover" : "rest"}
                   variants={iconHoverAnimation}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  {/* Subtle decorative ring */}
-                  <div className="absolute inset-0 rounded-full border border-gray-200"></div>
-                  
-                  {/* Icon wrapper with enhanced animation */}
-                  <motion.div
-                    className="text-gray-800 relative"
-                    animate={{ 
-                      rotate: hovered === feature.id ? [0, 5, 0, -5, 0] : 0
+                  <motion.div 
+                    className="absolute inset-0 rounded-2xl bg-white shadow-lg"
+                    animate={{
+                      rotateZ: hovered === feature.id ? -6 : 0,
+                      y: mousePosition.y * 0.1
                     }}
-                    transition={{ 
-                      duration: hovered === feature.id ? 0.6 : 0.3,
-                      ease: "easeInOut"
+                  />
+                  <motion.div 
+                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.iconBg} backdrop-blur-sm`}
+                    animate={{
+                      rotateZ: hovered === feature.id ? -3 : 0,
+                      y: mousePosition.y * 0.05
+                    }}
+                  />
+                  <motion.div 
+                    className="relative h-full flex items-center justify-center text-navy-900"
+                    animate={{
+                      rotateZ: hovered === feature.id ? [0, -5, 5, 0] : 0,
+                      y: mousePosition.y * 0.02
                     }}
                   >
-                    {feature.icon}
-                    
-                    {/* Subtle accent dot */}
-                    <div className="absolute top-0 right-0 w-2 h-2 rounded-full bg-blue-500 opacity-70"></div>
+                    <motion.div
+                      animate={hovered === feature.id ? {
+                        scale: [1, 1.1, 1],
+                        rotate: [0, -5, 5, 0],
+                      } : { scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {feature.icon}
+                    </motion.div>
                   </motion.div>
                 </motion.div>
-              </div>
-              
-              {/* Feature content with refined typography */}
-              <div className="relative">
-                {/* Title with animated underline */}
+
+                {/* Enhanced content */}
                 <motion.h3 
-                  className="text-xl font-bold mb-3 text-navy-900 inline-block relative"
+                  className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-navy-900"
                   animate={{ 
-                    y: hovered === feature.id ? -3 : 0
+                    scale: hovered === feature.id ? 1.05 : 1,
+                    y: hovered === feature.id ? -2 : 0,
+                    z: hovered === feature.id ? 10 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 >
                   {feature.title}
-                  
-                  {/* Professional animated underline */}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"
-                    initial={{ width: 0, left: '50%' }}
-                    animate={{ 
-                      width: hovered === feature.id ? '100%' : '0%',
-                      left: hovered === feature.id ? '0%' : '50%'
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </motion.h3>
-                
-                {/* Description with enhanced styling */}
+
                 <motion.p 
-                  className="text-gray-600 max-w-xs mx-auto"
+                  className="text-sm sm:text-base text-gray-600 leading-relaxed"
                   animate={{
-                    opacity: hovered === feature.id ? 1 : 0.8
+                    opacity: hovered === feature.id ? 1 : 0.8,
+                    y: hovered === feature.id ? -1 : 0,
+                    z: hovered === feature.id ? 5 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 >
                   {feature.description}
                 </motion.p>
-              </div>
+
+                {/* Enhanced accent line */}
+                <motion.div
+                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r"
+                  style={{
+                    background: `linear-gradient(to right, ${feature.iconBg.split(' ')[0].replace('/20', '')} 0%, ${feature.iconBg.split(' ')[1].replace('/20', '')} 100%)`
+                  }}
+                  initial={{ width: 0 }}
+                  animate={{ 
+                    width: hovered === feature.id ? '100%' : '0%',
+                    boxShadow: hovered === feature.id ? '0 0 20px rgba(59, 130, 246, 0.3)' : 'none'
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Premium decorative element */}
-        <div className="flex justify-center mt-20">
-          <div className="w-32 h-1.5 bg-gray-100 rounded-full flex overflow-hidden">
-            <motion.div 
-              className="h-full bg-gradient-to-r from-blue-400 to-blue-600"
-              initial={{ width: '25%' }}
-              animate={{ 
-                x: [0, 60, 0],
-                width: ['25%', '50%', '25%']
-              }}
-              transition={{ 
-                repeat: Infinity, 
-                repeatType: "reverse", 
-                duration: 5,
-                ease: "easeInOut"
-              }}
-            />
-          </div>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
