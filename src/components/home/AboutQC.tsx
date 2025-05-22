@@ -47,8 +47,8 @@ const AboutQC = () => {
                 className="text-4xl md:text-5xl font-bold mb-6 text-navy-900"
                 variants={textItem}
               >
-                <span className="block">GET TO KNOW</span>
-                <span className="block text-navy-900 font-extrabold">QUEZON CITY</span>
+              <span className="block">GET TO KNOW</span>
+              <span className="block text-navy-900 font-extrabold">QUEZON CITY</span>
               </motion.h2>
             </motion.div>
             
@@ -133,11 +133,11 @@ const AboutQC = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <img
-                  src="/Landing Page Pics/qc logo.png"
-                  alt="Quezon City Seal"
+              <img
+                src="/Landing Page Pics/qc logo.png"
+                alt="Quezon City Seal"
                   className="w-full h-auto max-w-md mx-auto drop-shadow-lg"
-                />
+              />
               </motion.div>
               <motion.p 
                 className="text-center text-sm mt-4 text-gray-600 font-medium"

@@ -3,7 +3,7 @@ import AboutQC from '@/components/home/AboutQC';
 import AdventureCarousel from '@/components/home/AdventureCarousel';
 import Features from '@/components/home/Features';
 import Destinations from '@/components/home/Destinations';
-import Newsletter from '@/components/home/Newsletter';
+import CommunityConnect from '@/components/home/Newsletter';
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <AdventureCarousel />
       <Features />
       <Destinations />
-      <Newsletter />
+      <CommunityConnect />
     </main>
   );
 }
