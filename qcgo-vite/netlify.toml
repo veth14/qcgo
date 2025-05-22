@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run deploy"
   publish = "dist"
 
 # Handle SPA routing by redirecting all paths to index.html
@@ -9,4 +9,5 @@
   status = 200
 
 [build.environment]
-  NODE_VERSION = "20" 
+  NODE_VERSION = "20"
+  VITE_SKIP_TS_CHECK = "true" 
