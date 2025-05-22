@@ -4,11 +4,13 @@ Project Started | May 20, 2025
 Projected Completion | July 31, 2025
 
 Day 1 | May 20, 2025
-A.) Created a landing page
-B.) GitHub Repository 
-C.) Netlify 
+Ian - A.) Created a landing page
+Ian - B.) GitHub Repository 
+Ian - C.) Netlify 
 
 Day 2 | May 21, 2025
 
 
 Day 3 | May 22, 2025
+Ian - A.) Fix Carousel
+Ian - B.) Get To Know
