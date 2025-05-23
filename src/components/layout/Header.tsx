@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [travelDropdownOpen, setTravelDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const travelDropdownRef = useRef<HTMLDivElement>(null);
@@ -47,12 +49,12 @@ const Header = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300 ${
       scrolled
         ? 'border-b border-white/5 backdrop-blur-md'
-        : 'bg-transparent'
+        : isHomePage ? 'bg-transparent' : 'bg-[#001B3D]'
     }`}
       style={{
         background: scrolled
           ? 'linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(17, 24, 39, 0.9), rgba(0, 0, 0, 0.9))'
-          : 'transparent'
+          : isHomePage ? 'transparent' : '#001B3D'
       }}
     >
       <div className="container flex items-center justify-between px-8 py-10 mx-auto"
