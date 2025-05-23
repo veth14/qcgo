@@ -19,5 +19,9 @@ Ian - D.) Features
 Ian - E.) Visit Now | Destination
 Ian - F.) Newsletter 
 
+Day 4 | May 23, 2025
+Ian - A.) Footer Fixed
+
+
 
 npm install react-icons
