@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#001B3D] text-white py-12">
+    <footer className="bg-gray-900 py-12">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
         <div className="flex justify-center mb-12">
@@ -42,7 +42,7 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-16 mb-12">
-          <Link to="/contact-us" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
+          <Link to="/contact" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
             Contact Us
           </Link>
           <Link to="/terms-of-use" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
