@@ -6,6 +6,7 @@ import { default as TermsOfUse } from './pages/TermsOfUse';
 import FAQs from './pages/FAQs';
 import Privacy from './pages/Privacy';
 import AboutUs from './pages/AboutUs';
+import AboutQC from './pages/AboutQC';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-qc" element={<AboutQC />} />
           {/* Add more routes as needed */}
           <Route path="*" element={<div className="container mx-auto py-20 text-center"><h1 className="text-3xl font-bold">Page Not Found</h1></div>} />
         </Routes>

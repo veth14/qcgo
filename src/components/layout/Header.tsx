@@ -129,9 +129,9 @@ const Header = () => {
                 onClick={handleHomeClick}
                 className="relative flex items-center font-medium group"
               >
-                <span className="relative px-3 py-1.5 rounded-full group-hover:bg-white/10 transition-all duration-200">
-                  <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">HOME</span>
-                  <span className="absolute inset-0 transition-all duration-300 border border-transparent rounded-full group-hover:border-white/10"></span>
+                <span className="relative px-3 py-1.5 transition-all duration-200">
+                  <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] transition-colors duration-200 group-hover:text-blue-400">HOME</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300 ease-out"></span>
                 </span>
               </a>
             </li>
@@ -144,11 +144,11 @@ const Header = () => {
                     setTravelDropdownOpen(false);
                   }}
                 >
-                  <span className="relative px-3 py-1.5 rounded-full group-hover:bg-white/10 transition-all duration-200">
-                    <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">MORE</span>
-                    <span className={`absolute inset-0 rounded-full transition-all duration-300 ${moreDropdownOpen ? 'bg-white/15 border-white/15 border' : 'group-hover:border-white/10 border border-transparent'}`}></span>
+                  <span className={`relative px-3 py-1.5 rounded-lg transition-all duration-200 ${moreDropdownOpen ? 'bg-white/10' : ''}`}>
+                    <span className={`relative z-10 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] transition-colors duration-200 ${moreDropdownOpen ? 'text-blue-400' : 'text-white group-hover:text-blue-400'}`}>MORE</span>
+                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 ${moreDropdownOpen ? 'w-full' : 'group-hover:w-full'} transition-all duration-300 ease-out`}></span>
                   </span>
-                  <svg className={`w-4 h-4 ml-0.5 transition-transform duration-300 ${moreDropdownOpen ? 'rotate-180 text-blue-400' : 'text-white/70 group-hover:text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className={`w-4 h-4 ml-0.5 transition-all duration-300 ${moreDropdownOpen ? 'rotate-180 text-blue-400' : 'text-white/70 group-hover:text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -245,11 +245,11 @@ const Header = () => {
                     setMoreDropdownOpen(false);
                   }}
                 >
-                  <span className="relative px-3 py-1.5 rounded-full group-hover:bg-white/10 transition-all duration-200">
-                    <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">TRAVEL GUIDE</span>
-                    <span className={`absolute inset-0 rounded-full transition-all duration-300 ${travelDropdownOpen ? 'bg-white/15 border-white/15 border' : 'group-hover:border-white/10 border border-transparent'}`}></span>
+                  <span className={`relative px-3 py-1.5 rounded-lg transition-all duration-200 ${travelDropdownOpen ? 'bg-white/10' : ''}`}>
+                    <span className={`relative z-10 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] transition-colors duration-200 ${travelDropdownOpen ? 'text-blue-400' : 'text-white group-hover:text-blue-400'}`}>TRAVEL GUIDE</span>
+                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 ${travelDropdownOpen ? 'w-full' : 'group-hover:w-full'} transition-all duration-300 ease-out`}></span>
                   </span>
-                  <svg className={`w-4 h-4 ml-0.5 transition-transform duration-300 ${travelDropdownOpen ? 'rotate-180 text-blue-400' : 'text-white/70 group-hover:text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className={`w-4 h-4 ml-0.5 transition-all duration-300 ${travelDropdownOpen ? 'rotate-180 text-blue-400' : 'text-white/70 group-hover:text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -392,14 +392,6 @@ const Header = () => {
                 </div>
               </div>
             </li>
-            <li>
-              <Link to="/about-us" className="relative flex items-center font-medium group">
-                <span className="relative px-3 py-1.5 rounded-full group-hover:bg-white/10 transition-all duration-200">
-                  <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">ABOUT US</span>
-                  <span className="absolute inset-0 transition-all duration-300 border border-transparent rounded-full group-hover:border-white/10"></span>
-                </span>
-              </Link>
-            </li>
           </ul>
         </nav>
 
@@ -427,27 +419,34 @@ const Header = () => {
           <div className="px-4 py-3 border-b border-white/5">
             <h3 className="text-xs font-semibold tracking-wider uppercase text-blue-400/90">Navigation</h3>
           </div>
-          <ul className="px-4 py-2 space-y-1">
+          <ul className="space-y-4">
             <li>
-              <a
-                href="/"
-                onClick={handleHomeClick}
-                className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group"
-              >
+              <Link to="/" className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group">
                 <div className="flex items-center justify-center w-8 h-8 mr-3 transition-all duration-200 border rounded-full bg-gradient-to-br from-blue-600/20 to-blue-800/20 group-hover:from-blue-600/30 group-hover:to-blue-800/30 border-white/5 group-hover:border-blue-500/30">
                   <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
                 <span className="font-medium">HOME</span>
-              </a>
+              </Link>
             </li>
-
-            {/* Mobile MORE dropdown */}
+            <li>
+              <Link to="/about-qc" className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group">
+                <div className="flex items-center justify-center w-8 h-8 mr-3 transition-all duration-200 border rounded-full bg-gradient-to-br from-blue-600/20 to-blue-800/20 group-hover:from-blue-600/30 group-hover:to-blue-800/30 border-white/5 group-hover:border-blue-500/30">
+                  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <span className="font-medium">ABOUT QC</span>
+              </Link>
+            </li>
             <li>
               <button
-                onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                className="flex items-center justify-between w-full p-3 text-left text-white transition-all duration-200 rounded-xl hover:bg-white/5 group"
+                className="flex items-center w-full p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group"
+                onClick={() => {
+                  setMoreDropdownOpen(!moreDropdownOpen);
+                  setTravelDropdownOpen(false);
+                }}
               >
                 <div className="flex items-center">
                   <div className="flex items-center justify-center w-8 h-8 mr-3 transition-all duration-200 border rounded-full bg-gradient-to-br from-blue-600/20 to-blue-800/20 group-hover:from-blue-600/30 group-hover:to-blue-800/30 border-white/5 group-hover:border-blue-500/30">
@@ -599,17 +598,6 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-            </li>
-
-            <li>
-              <Link to="/about-us" className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group">
-                <div className="flex items-center justify-center w-8 h-8 mr-3 transition-all duration-200 border rounded-full bg-gradient-to-br from-blue-600/20 to-blue-800/20 group-hover:from-blue-600/30 group-hover:to-blue-800/30 border-white/5 group-hover:border-blue-500/30">
-                  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <span className="font-medium">ABOUT US</span>
-              </Link>
             </li>
           </ul>
         </div>
