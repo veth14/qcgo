@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B1C48" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0B1C48" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0B1C48" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0B1C48" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Floating Elements -->
+  <g transform="translate(100,100)">
+    <!-- Curved Line Chart -->
+    <path d="M0 300C100 280 200 150 300 180C400 210 500 100 600 50" 
+          stroke="url(#lineGradient)" 
+          stroke-width="3"
+          fill="none"/>
+    
+    <!-- Area Chart -->
+    <path d="M0 300C100 280 200 150 300 180C400 210 500 100 600 50V400H0Z" 
+          fill="url(#chartGradient)"/>
+
+    <!-- Data Points -->
+    <circle cx="0" cy="300" r="8" fill="#0B1C48" fill-opacity="0.2"/>
+    <circle cx="300" cy="180" r="8" fill="#0B1C48" fill-opacity="0.2"/>
+    <circle cx="600" cy="50" r="8" fill="#0B1C48" fill-opacity="0.2"/>
+    
+    <!-- Floating Squares -->
+    <rect x="50" y="150" width="40" height="40" transform="rotate(15)" fill="#0B1C48" fill-opacity="0.1"/>
+    <rect x="450" y="100" width="30" height="30" transform="rotate(-15)" fill="#0B1C48" fill-opacity="0.1"/>
+    <rect x="250" y="200" width="25" height="25" transform="rotate(30)" fill="#0B1C48" fill-opacity="0.1"/>
+  </g>
+
+  <!-- Grid Lines -->
+  <g stroke="#0B1C48" stroke-opacity="0.1" stroke-dasharray="4 4">
+    <line x1="50" y1="50" x2="750" y2="50"/>
+    <line x1="50" y1="200" x2="750" y2="200"/>
+    <line x1="50" y1="350" x2="750" y2="350"/>
+    <line x1="50" y1="500" x2="750" y2="500"/>
+  </g>
+</svg> 

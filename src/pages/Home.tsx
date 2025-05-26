@@ -7,14 +7,14 @@ import CommunityConnect from '../components/home/Newsletter';
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Hero />
       <AboutQC />
       <AdventureCarousel />
       <Features />
       <Destinations />
       <CommunityConnect />
-    </div>
+    </>
   );
 };
 

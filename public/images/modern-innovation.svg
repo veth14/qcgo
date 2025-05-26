@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="innovationGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1C48" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0B1C48" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="circleGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1C48" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0B1C48" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Pattern -->
+  <g transform="translate(400,400)">
+    <!-- Concentric Circles -->
+    <circle r="300" stroke="#0B1C48" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="4 4" fill="none"/>
+    <circle r="200" stroke="#0B1C48" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="4 4" fill="none"/>
+    <circle r="100" stroke="#0B1C48" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="4 4" fill="none"/>
+    
+    <!-- Floating Geometric Shapes -->
+    <g transform="rotate(30)">
+      <rect x="-20" y="-150" width="40" height="40" fill="#0B1C48" fill-opacity="0.1"/>
+      <circle cx="120" cy="-120" r="25" fill="#0B1C48" fill-opacity="0.1"/>
+      <polygon points="-150,-50 -120,-90 -90,-50" fill="#0B1C48" fill-opacity="0.1"/>
+    </g>
+    
+    <!-- Connected Lines -->
+    <path d="M-200 0L200 0M0 -200L0 200" stroke="#0B1C48" stroke-width="1" stroke-opacity="0.1"/>
+    <path d="M-150 -150L150 150M-150 150L150 -150" stroke="#0B1C48" stroke-width="1" stroke-opacity="0.1"/>
+  </g>
+
+  <!-- Central Innovation Element -->
+  <g transform="translate(400,400)">
+    <!-- Outer Ring -->
+    <circle r="80" fill="url(#innovationGradient)"/>
+    
+    <!-- Inner Elements -->
+    <g transform="rotate(45)">
+      <rect x="-40" y="-40" width="80" height="80" fill="url(#circleGradient)"/>
+    </g>
+    
+    <!-- Connection Points -->
+    <circle cx="80" cy="0" r="10" fill="#0B1C48" fill-opacity="0.2"/>
+    <circle cx="-80" cy="0" r="10" fill="#0B1C48" fill-opacity="0.2"/>
+    <circle cx="0" cy="80" r="10" fill="#0B1C48" fill-opacity="0.2"/>
+    <circle cx="0" cy="-80" r="10" fill="#0B1C48" fill-opacity="0.2"/>
+  </g>
+</svg> 

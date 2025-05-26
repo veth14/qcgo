@@ -126,12 +126,26 @@ const Contact = () => {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#contact-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('contact-form');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
                 className="rounded-full bg-indigo-600 px-8 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200"
               >
                 Send us a message
               </a>
               <a
                 href="#location"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('location');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
                 className="text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors duration-200"
               >
                 View location <span aria-hidden="true">→</span>
@@ -161,7 +175,8 @@ const Contact = () => {
                 {contactInfo.map((item, index) => (
                   <div 
                     key={index} 
-                    className="group relative overflow-hidden rounded-xl bg-white p-6 transition-all duration-300 hover:bg-gradient-to-br hover:from-indigo-50 hover:to-white"
+                    id={item.title.toLowerCase()}
+                    className="group relative overflow-hidden rounded-xl bg-white p-6 transition-all duration-300 hover:bg-gradient-to-br hover:from-indigo-50 hover:to-white scroll-mt-24"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-100/0 to-indigo-100/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <div className="relative flex items-start">
@@ -221,7 +236,7 @@ const Contact = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="rounded-2xl bg-white p-8 shadow-lg"
             >
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 id="contact-form" className="text-2xl font-bold text-gray-900 scroll-mt-24">
                 Send Us a Message
               </h2>
               <p className="mt-2 text-gray-600">
@@ -425,3 +440,4 @@ const Contact = () => {
 };
 
 export default Contact;
+ 
