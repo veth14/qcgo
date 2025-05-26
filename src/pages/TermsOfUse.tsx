@@ -492,22 +492,22 @@ const TermsOfUse: React.FC = () => {
                         <div className="flex flex-wrap gap-4">
                           <motion.a
                             href="/contact"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-lg shadow-sm text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:shadow-md transition-all duration-200"
-                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-lg shadow-sm text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:shadow transition-all duration-200"
+                            whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            Contact Support
+                            Contact Us
                           </motion.a>
                           <motion.a
                             href="/faqs"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-lg shadow-sm text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:shadow-md transition-all duration-200"
-                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-lg shadow-sm text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:shadow transition-all duration-200"
+                            whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             View FAQs

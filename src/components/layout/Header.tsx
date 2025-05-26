@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,10 +7,24 @@ const Header = () => {
   const [travelDropdownOpen, setTravelDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
 
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const travelDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Handle home navigation
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isHomePage) {
+      // If already on home page, scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If on another page, navigate to home and then scroll to top
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -44,6 +58,11 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Scroll to top when navigating to a new page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300 ${
@@ -105,12 +124,16 @@ const Header = () => {
         <nav className="items-center hidden md:flex">
           <ul className="flex space-x-8">
             <li>
-              <Link to="/" className="relative flex items-center font-medium group">
+              <a
+                href="/"
+                onClick={handleHomeClick}
+                className="relative flex items-center font-medium group"
+              >
                 <span className="relative px-3 py-1.5 rounded-full group-hover:bg-white/10 transition-all duration-200">
                   <span className="relative z-10 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">HOME</span>
                   <span className="absolute inset-0 transition-all duration-300 border border-transparent rounded-full group-hover:border-white/10"></span>
                 </span>
-              </Link>
+              </a>
             </li>
             <li>
               <div className="relative" ref={moreDropdownRef}>
@@ -406,14 +429,18 @@ const Header = () => {
           </div>
           <ul className="px-4 py-2 space-y-1">
             <li>
-              <Link to="/" className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group">
+              <a
+                href="/"
+                onClick={handleHomeClick}
+                className="flex items-center p-3 transition-all duration-200 rounded-xl hover:bg-white/5 group"
+              >
                 <div className="flex items-center justify-center w-8 h-8 mr-3 transition-all duration-200 border rounded-full bg-gradient-to-br from-blue-600/20 to-blue-800/20 group-hover:from-blue-600/30 group-hover:to-blue-800/30 border-white/5 group-hover:border-blue-500/30">
                   <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
                 <span className="font-medium">HOME</span>
-              </Link>
+              </a>
             </li>
 
             {/* Mobile MORE dropdown */}

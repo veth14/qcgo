@@ -51,9 +51,6 @@ const Footer = () => {
           <Link to="/faqs" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
             FAQs
           </Link>
-          <Link to="/about-us" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
-            About Us
-          </Link>
           <Link to="/privacy" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
             Privacy
           </Link>
