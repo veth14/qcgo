@@ -1,7 +1,7 @@
 QCGO! Your Travelling Partner
 
 Project Started | May 20, 2025
-Projected Completion | July 31, 2025
+Estimated Time of Completion | July 31, 2025
 
 Day 1 | May 20, 2025
 Ian - A.) Created a landing page
@@ -21,9 +21,16 @@ Ian - F.) Newsletter
 
 Day 4 | May 23, 2025
 Ian - A.) Footer Fixed
-Ian - B.) Contact Us
-Ian - C.) Terms of Use
+Ian - B.) Contact Us Page
+Ian - C.) Terms of Use Page
 
+May 24, 2025 [Weekends Rest]
+May 25, 2025 [Weekends Rest]
+
+Day 5 | May 26, 2025
+Ian - A.) Faqs Page
+Ian - B.) Privacy Policy Page
+Ian - C.) About us Page 
 
 
 npm install react-icons
