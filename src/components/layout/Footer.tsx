@@ -42,6 +42,9 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-16 mb-12">
+          <Link to="/about-us" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
+            About Us
+          </Link>
           <Link to="/contact" className="text-white hover:text-gray-300 transition-colors uppercase tracking-wider text-sm font-medium">
             Contact Us
           </Link>

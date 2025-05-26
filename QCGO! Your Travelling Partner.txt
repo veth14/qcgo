@@ -32,5 +32,10 @@ Ian - A.) Faqs Page
 Ian - B.) Privacy Policy Page
 Ian - C.) About us Page 
 
+Day 6 | May 27, 2025
+Ian - A.) Header Fixed 
+Ian - B.) Footer Added About Us Navigation
+Ian - C.) About QC Page 
+
 
 npm install react-icons
