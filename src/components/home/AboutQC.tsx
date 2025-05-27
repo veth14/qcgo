@@ -97,11 +97,16 @@ const AboutQC = () => {
               whileTap={{ scale: 0.98 }}
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
+              onClick={() => {
+                window.location.href = '/about-qc';
+              }}
             >
+
               {hovered && (
                 <motion.span 
-                  className="absolute inset-0 bg-blue-700 opacity-30"
+                  className="absolute inset-0 bg-dark-900 opacity-50"
                   layoutId="buttonHighlight"
+                  
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.3 }}
                   exit={{ opacity: 0 }}
