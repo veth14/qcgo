@@ -79,18 +79,13 @@ const DistrictExplorer: React.FC<DistrictExplorerProps> = ({ districtData }) => 
             transition={{ duration: 0.4 }}
           >
             {showMap ? (
-              <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                <div className="aspect-video relative">
-                  <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-gray-400 mb-4">
-                        <FaMapMarkerAlt className="inline-block text-5xl" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-600">{districtData[activeDistrict].name} Map</h3>
-                      <p className="text-gray-500 mt-2">Interactive map would be displayed here</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="flex items-center justify-center">
+                <img
+                  src={`/districtmaps/district${activeDistrict + 1}.jpg`}
+                  alt={`District ${activeDistrict + 1} Map`}
+                  className="rounded-xl shadow-xl max-w-full max-h-[70vh] object-contain border border-blue-100 bg-white"
+                  style={{ display: 'block' }}
+                />
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
@@ -182,29 +177,6 @@ const DistrictExplorer: React.FC<DistrictExplorerProps> = ({ districtData }) => 
             )}
           </motion.div>
         </AnimatePresence>
-        
-        {/* Navigation Buttons */}
-        <div className="mt-12 flex justify-between">
-          <button
-            onClick={() => setActiveDistrict(prevState => (prevState > 0 ? prevState - 1 : districtData.length - 1))}
-            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg flex items-center hover:bg-gray-200 transition-colors"
-          >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Previous District
-          </button>
-          
-          <button
-            onClick={() => setActiveDistrict(prevState => (prevState < districtData.length - 1 ? prevState + 1 : 0))}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg flex items-center hover:bg-blue-700 transition-colors"
-          >
-            Next District
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
       </div>
     </div>
   );
